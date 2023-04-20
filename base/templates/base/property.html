@@ -1,7 +1,8 @@
  {% extends 'main.html' %}
 {% block content %}
 <h1>PROPERTY</h1>
-    {{ property.property_name }}
+    <img src="{{ property.featured_image.url }}" alt="...">
+    {{ property.title }}
     <br>
     {{ property.description }}
 {% endblock content %}

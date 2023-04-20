@@ -10,8 +10,9 @@ class Property(models.Model):
         ('AVAILABLE', 'AVAILABLE'),
         ('BOOKED', 'BOOKED'),
     )
-    property_name = models.CharField(max_length=100)
-    description = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    featured_image = models.ImageField(null=True, blank=True, default="default.png")
     property_type = models.ForeignKey('PropertyType', on_delete=models.SET_NULL, blank=True, null=True)
     price = models.IntegerField(default=0, blank=True, null=True)
     location = models.CharField(max_length=100, blank=True, null=True)
@@ -24,7 +25,7 @@ class Property(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
     def __str__(self):
-        return self.property_name
+        return self.title
 
     class Meta:
         verbose_name = 'Property'

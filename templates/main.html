@@ -4,15 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Talk Real Properties</title>
+    <link rel="stylesheet" href="{% static 'dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/custom.css' %}">
 </head>
 <body>
-<link rel="stylesheet" href="{% static 'dist/css/bootstrap.min.css' %}">
 {% include 'navbar.html' %}
-{%  block content %}
+{% block content %}
 
-{%  endblock content %}
+{% endblock content %}
 <script src="{% static 'dist/js/bootstrap.min.js' %}"></script>
 <script src="{% static 'dist/js/jquery-3.2.1.slim.min.js' %}"></script>
 <script src="{% static 'dist/js/popper.min.js' %}"></script>
+<script src="{% static 'dist/js/custom.js' %}"></script>
 </body>
 </html>

@@ -5,4 +5,7 @@ from .models import Property
 class PropertyForm(ModelForm):
     class Meta:
         model = Property
-        fields = '__all__'
+        fields = [
+            'title', 'description', 'featured_image', 'property_type', 'price', 'location',
+            'property_status', 'tags'
+        ]

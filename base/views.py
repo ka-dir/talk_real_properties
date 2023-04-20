@@ -22,7 +22,7 @@ def create_property(request):
     property_form = PropertyForm()
     if request.method == 'POST':
         # print(request.POST)
-        property_form = PropertyForm(request.POST)
+        property_form = PropertyForm(request.POST, request.FILES)
         if property_form.is_valid():
             property_form.save()
             return redirect('properties')
@@ -35,7 +35,7 @@ def update_property(request, pk):
     property = Property.objects.get(id=pk)
     property_form = PropertyForm(instance=property)
     if request.method == 'POST':
-        property_form = PropertyForm(request.POST, instance=property)
+        property_form = PropertyForm(request.POST, request.FILES, instance=property)
         if property_form.is_valid():
             property_form.save()
             return redirect('properties')
