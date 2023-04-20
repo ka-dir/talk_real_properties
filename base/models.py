@@ -12,7 +12,7 @@ class Property(models.Model):
     )
     property_name = models.CharField(max_length=100)
     description = models.CharField(max_length=100)
-    property_type = models.OneToOneField('PropertyType',max_length=100, blank=True, null=True, on_delete=models.SET_NULL)
+    property_type = models.ForeignKey('PropertyType', on_delete=models.SET_NULL, blank=True, null=True)
     price = models.IntegerField(default=0, blank=True, null=True)
     location = models.CharField(max_length=100, blank=True, null=True)
     property_status = models.CharField(max_length=100, choices=PROPERTY_STATUS, null=True, blank=True)
