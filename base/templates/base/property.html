@@ -1,8 +1,49 @@
  {% extends 'main.html' %}
 {% block content %}
-<h1>PROPERTY</h1>
+{% comment %}<h1>PROPERTY</h1>
     <img src="{{ property.featured_image.url }}" alt="...">
     {{ property.title }}
     <br>
-    {{ property.description }}
+    {{ property.description }}{% endcomment %}
+      <div class="row mb-2">
+          <img src="{{ property.featured_image.url }}" alt="" style="max-height: 500px">
+    <div class="col-md-12">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-success">Posted By <a href=""> {{ request.user.username }}</a></strong>
+          <h3 class="mb-0">{{ property.title }}</h3>
+          <div class="mb-1 text-body-secondary">{{ property.created_at|timesince }} ago</div>
+          <p class="mb-auto">
+                {{ property.description }}
+          </p>
+
+        </div>
+
+      </div>
+         {% for tag in property.tags.all %} <!-- query many-to-many relationship -->
+                            <span class="badge badge-primary">{{ tag }}</span>
+                        {% endfor %}
+        <br> <br>
+                    <nav class="blog-pagination" aria-label="Pagination">
+                        <a class="btn btn-outline-primary rounded-pill" href="#">{{ property.location }}</a>
+                    </nav>
+        <br>
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                <h6>FEED BACK</h6>
+            </div>
+            <div class="card-body">
+    <strong class="d-inline-block mb-2 text-success">{{ property.vote_ratio }}% Positive Feedback ({{ property.vote_total }} Vote{{ property.vote_total|pluralize:"s" }})</strong>
+                <hr>
+                <textarea name="" id="" class="form-control" placeholder="Write your comments here..."></textarea> <br>
+               <button type="button" class="btn btn-secondary">COMMENT</button>
+
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+  </div>
 {% endblock content %}

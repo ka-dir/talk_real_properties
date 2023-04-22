@@ -1,7 +1,7 @@
 import uuid
 
 from django.db import models
-
+from users.models import Profile
 
 # Create your models here.
 
@@ -10,6 +10,7 @@ class Property(models.Model):
         ('AVAILABLE', 'AVAILABLE'),
         ('BOOKED', 'BOOKED'),
     )
+    owner = models.ForeignKey(Profile, blank=True, null=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=100)
     description = models.TextField()
     featured_image = models.ImageField(null=True, blank=True, default="default.png")
