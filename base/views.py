@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Property
 from .forms import PropertyForm
+from django.contrib.auth.decorators import login_required
+
 
 
 # Create your views here.
@@ -18,6 +20,7 @@ def property(request, pk):
 
 
 # add new property
+@login_required(login_url='login')
 def create_property(request):
     property_form = PropertyForm()
     if request.method == 'POST':
@@ -31,6 +34,7 @@ def create_property(request):
 
 
 # edit property
+@login_required(login_url='login')
 def update_property(request, pk):
     property = Property.objects.get(id=pk)
     property_form = PropertyForm(instance=property)
@@ -44,6 +48,7 @@ def update_property(request, pk):
 
 
 # delete property
+@login_required(login_url='login')
 def delete_property(request, pk):
     project_obj = Property.objects.get(id=pk)
     if request.method == 'POST':
