@@ -1,0 +1,61 @@
+{% extends 'main.html' %}
+{% block content %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <section class="bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 mb-4 mb-sm-5">
+                    <div class="card card-style1 border-0">
+                        <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6 mb-4 mb-lg-0">
+                                    <img src="{{ profile.profile_image.url }}" alt="..." style="max-height: 400px">
+                                </div>
+                                <div class="col-lg-6 px-xl-10">
+                                    <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
+                                        <h3 class="h2 text-white mb-0">{{ profile.name }}</h3>
+                                    </div>
+                                    <hr>
+                                    <span class="section-title text-primary mb-3 mb-sm-4">Social</span><br>
+                                    {% if profile.social_facebook %}
+                                        <a href="#" class="fa fa-facebook"></a>
+                                    {% endif %}
+                                    {% if profile.social_twitter %}
+                                        <a href="#" class="fa fa-twitter"></a>
+                                    {% endif %}
+                                    {% if profile.social_instagram %}
+                                        <a href="#" class="fa fa-instagram"></a>
+                                    {% endif %}
+                                    {% if profile.social_youtube %}
+                                        <a href="#" class="fa fa-youtube"></a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 mb-4 mb-sm-5">
+                    <div>
+                        <span class="section-title text-primary mb-3 mb-sm-4">About Me</span>
+                        <hr>
+                        {{ profile.short_intro }}
+                        <hr>
+                        <span class="section-title text-primary mb-3 mb-sm-4">Bio</span><br>
+                        {{ profile.bio }}
+                        <hr>
+                        <span class="section-title text-primary mb-3 mb-sm-4">Skills</span><br>
+                        {% for skill in profile.skill_set.all %}
+                            <span class="badge badge-pill badge-warning">
+                <!-- parent is profile and skill is child parent.child_set.all -->
+                    {{ skill }}
+            </span>
+                            <br>
+
+                    {{ skill.description }} <br>
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+    </section>
+{% endblock content %}

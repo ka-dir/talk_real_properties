@@ -3,6 +3,7 @@
     <div class="row mb-2">
 {% for profile in profiles %}
     <div class="col-md-6">
+    <a href="{% url 'profile' profile.id %}">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-primary">{{ profile.name }}</strong>
@@ -11,10 +12,19 @@
           <p class="card-text mb-auto">{{ profile.bio|slice:":150" }}</p>
 
         </div>
+
         <div class="col-auto d-none d-lg-block">
+                {% for skill in profile.skill_set.all %}
+            <span class="badge badge-pill badge-warning">
+                <!-- parent is profile and skill is child parent.child_set.all -->
+                    {{ skill }}
+            </span>
+                    {% endfor %}
           <img class="bd-placeholder-img" width="200" height="250"  role="img"  src="{{ profile.profile_image.url }}"/>
         </div>
+
       </div>
+</a>
     </div>
  {% endfor %}
 {% endblock content %}
